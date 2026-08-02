@@ -13,3 +13,23 @@ elif score >= 60:
     print("D")
 else:
     print("F")
+
+
+# learning match case statement 
+day = 2
+
+match day:
+    case 1:
+        print("Monday")
+    case 2:
+        print("Tuesday")
+    case _:
+        print("Unknown")
+
+point = (3, 4)
+
+match point:
+    case (0, 0):
+        print("Origin")
+    case (x, y):
+        print(f"{x}, {y}")
