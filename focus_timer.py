@@ -1,4 +1,4 @@
-import time 
+import time , subprocess
 focus_time = int(input("How many minutes do you want to focus? "))
 total_seconds = focus_time * 60
 while total_seconds > 0:
@@ -7,8 +7,10 @@ while total_seconds > 0:
     get_seconds = total_seconds % 60
     print(f"{get_minutes:02d}:{get_seconds:02d}")
     total_seconds -= 1
+    
 print("Time's up! Take a break.")
-print("\a")
+printsubprocess.Popen(['start', 'alarm.wav'], shell=True)
+
 
 
 
