@@ -43,3 +43,9 @@ def counter():
     return increment
 c = counter()
 print(c())
+
+#
+funcs = []
+for i in range(3):
+    funcs.append(lambda: i)
+print([f() for f in funcs])
