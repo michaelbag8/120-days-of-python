@@ -34,3 +34,12 @@ print(f())
 #Build a pipeline tool: pipeline(data, *functions) runs data through a chain of functions, each output feeding the next. Use it to process raw scores:
 raw_scores = ["  85", "92 ", " 78", "100", " 65 "]
 # Steps: strip whitespace → convert to int → filter out below 70 → average what remains
+
+def counter():
+    count = 0
+    def increment():
+        count += 1
+        return count
+    return increment
+c = counter()
+print(c())
