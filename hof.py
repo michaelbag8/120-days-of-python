@@ -49,3 +49,24 @@ funcs = []
 for i in range(3):
     funcs.append(lambda: i)
 print([f() for f in funcs])
+
+#Classes_ abstraction 
+class CoffeeMachine:
+
+    def make_coffee(self):
+        self._heat_water()
+        self._grind_beans()
+        self._brew()
+
+    def _heat_water(self):
+        print("Heating water")
+
+    def _grind_beans(self):
+        print("Grinding beans")
+
+    def _brew(self):
+        print("Brewing coffee")
+
+machine = CoffeeMachine()
+
+machine.make_coffee()
