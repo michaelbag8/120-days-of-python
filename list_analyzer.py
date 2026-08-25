@@ -1,18 +1,22 @@
 print("=====List Analyzer=====")
 
 def numbers_list():
-    num = list(map(int, input("Enter Numbers: ").split()))
-    return num
+    numbers = list(map(int, input("Enter Numbers: ").split()))
+    return numbers
 
 
-result =  numbers_list()
-rev = list(reversed(result))
-sor = sorted(result)
+numbers = numbers_list()
 
-print("Numbers: ", result)
-print("Count: ", len(result))
-print("Maximum: ", max(result))
-print("Minimum: ", min(result))
-print("Sum: ", sum(result))
-print("Sorted: ",sor)
-print("Reversed: ", rev)
+if not numbers:
+    print("No numbers entered.")
+else:
+    reversed_numbers = list(reversed(numbers))
+    sorted_numbers = sorted(numbers)
+
+    print("Numbers: ", numbers)
+    print("Count: ", len(numbers))
+    print("Maximum: ", max(numbers))
+    print("Minimum: ", min(numbers))
+    print("Sum: ", sum(numbers))
+    print("Sorted: ", sorted_numbers)
+    print("Reversed: ", reversed_numbers)
