@@ -9,8 +9,9 @@ def numbers_list():
 
 
 numbers = numbers_list()
-
-if not numbers:
+if numbers is None:
+    print("Please enter a list of numbers separated by space")
+elif not numbers:
     print("No numbers entered.")
 else:
     reversed_numbers = list(reversed(numbers))
