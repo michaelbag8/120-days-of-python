@@ -1,7 +1,10 @@
 print("=====List Analyzer=====")
 
 def numbers_list():
-    numbers = list(map(int, input("Enter Numbers: ").split()))
+    try:
+        numbers = list(map(int, input("Enter Numbers: ").split()))
+    except ValueError:
+        return None
     return numbers
 
 
