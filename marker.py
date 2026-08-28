@@ -1,3 +1,4 @@
+import re
 text = "hello#"
 
 word = text.replace("#", "").upper()
