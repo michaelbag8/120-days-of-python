@@ -21,6 +21,12 @@ class Employee(Person):
         super().__init__(name, age)
         self.employee_id = employee_id
         self.salary = salary
+        
+    def show_employee_info(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Employee ID: {self.employee_id}")
+        print(f"Salary: {self.salary}")
 
 
 class Teacher(Employee):
@@ -39,3 +45,4 @@ teacher = Teacher(
 )
 
 teacher.introduce()
+teacher.show_employee_info()
