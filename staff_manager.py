@@ -34,6 +34,11 @@ class Teacher(Employee):
     def __init__(self, name, age, employee_id, salary, subject):
         super().__init__(name, age, employee_id, salary)
         self.subject = subject
+        
+    def teach(self):
+        print(f"My name is {self.name} and i teach {self.subject}")
+
+
 
 
 teacher = Teacher(
@@ -46,3 +51,4 @@ teacher = Teacher(
 
 teacher.introduce()
 teacher.show_employee_info()
+teacher.teach()
