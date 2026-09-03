@@ -13,9 +13,8 @@ def add(website):
     return history
 
 def view_history():
-    
+    print("\nHistory")
     for index, items in enumerate(history, start=1):
-        print("\nHistory")
         print(f"{index}: {items}")
 
 def go_back():
@@ -23,6 +22,7 @@ def go_back():
     return back
 
 def current_page():
+    print("\nCurrent Page")
     current = history[-1]
     return current
 
@@ -45,7 +45,7 @@ while True:
         print(current_page())
 
     elif choice == "4":
-        print(view_history())
+        view_history()
 
     else:
         print(f"Sorry {choice} is not a valid choice")
