@@ -39,3 +39,14 @@ def test_function():
 	# Complete the assertion tests here
     assert get_unique_values([1,2,3]) == [1,2,3]
     assert get_unique_values([1,2,3,1]) == [1,2,3]
+
+
+@pytest.fixture
+# Name the fixture function
+def prepare_data():
+    return [i for i in range(10)]
+
+# Create the tests
+def test_elements(prepare_data):
+    assert 9 in prepare_data
+    assert 10 not in prepare_data
