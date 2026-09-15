@@ -45,7 +45,17 @@ def detect_nigerian_network(phone_number):
         # Ntel (Fixed line but included for completeness)
         'Ntel': ['0804'],
         # Smile Communications
-        'Smile': ['0702']
+        'Smile': ['0702'],
+        # Starcomms
+        'starcomms': ["07028", "07029", "0819"],
+        # Visafone
+        'visafone': ["07025", "07026", "0704"],
+        
+        # Multilinks
+        'multilinks': ["07027", "0709"],
+
+        #Zoom
+        'zoom': ["0707"]
     }
     
     # Check which network the prefix belongs to
