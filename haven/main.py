@@ -65,8 +65,23 @@ def calculate(a: str, b: str, op: str) -> str:
 def agent(user_agent: str | None = Header(default=None)):
     return f"You are visiting us using: {user_agent}"
 
+@app.get("/dashboard")
+def dashboard(x_api_key: str | None = Header(default=None)):
+    if x_api_key != "secret123":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    return "Welcome"
 
+# The Strectch using Depends() --> check it out
+# def verify_api_key(x_api_key: str | None = Header(default=None)):
+#     if x_api_key != "secret123":
+#         raise HTTPException(
+#             status_code=401,
+#             detail="Unauthorized"
+#         )
 
+# @app.get("/dashboard")
+# def dashboard(api_key: str = Depends(verify_api_key)):
+#     return "Welcome to the dashboard!"
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000) 
