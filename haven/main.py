@@ -1,8 +1,8 @@
 import uvicorn
 
 
-from fastapi import FastAPI, Request, Header
-from fastapi.responses import PlainTextResponse
+from fastapi import FastAPI, Request, Header, status
+from fastapi.responses import PlainTextResponse, RedirectResponse
 from starlette.exceptions import HTTPException
 
 app = FastAPI()
@@ -70,6 +70,15 @@ def dashboard(x_api_key: str | None = Header(default=None)):
     if x_api_key != "secret123":
         raise HTTPException(status_code=401, detail="Unauthorized")
     return "Welcome"
+
+
+@app.get("/legacy")
+def legacy():
+    return RedirectResponse(url="/v2", status_code=status.HTTP_301_MOVED_PERMANENTLY)
+
+@app.get("/v2", response_class=PlainTextResponse)
+def version_two():
+    return "Welcome to version 2"
 
 # The Strectch using Depends() --> check it out
 # def verify_api_key(x_api_key: str | None = Header(default=None)):
