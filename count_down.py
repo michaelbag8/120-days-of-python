@@ -1,15 +1,16 @@
-#mini count down
-number = int(input("Enter starting number: "))
+import time
 
-while number >= 1:
-    print(number)
-    number -= 1
 
-def count_down(number):
-    if number < 0:
+def count_down(start):
+    if start < 0:
+        print("Please enter a non-negative number.")
         return
-    print(number)
-    count_down(number - 1)
+
+    for number in range(start, -1, -1):
+        print(f"\r{number:02d}", end="", flush=True)
+        time.sleep(0.5)
+
+    print("\rBlast Off!")
 
 
 def main():
@@ -18,8 +19,9 @@ def main():
     except ValueError:
         print("That's not an integer.")
         return
+
     count_down(number)
 
 
-main()
-print("Blast Off!")
+if __name__ == "__main__":
+    main()
