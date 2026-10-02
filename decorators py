@@ -1,0 +1,24 @@
+from functools import wraps
+
+
+def retry(attempts):
+
+    if attempts < 1:
+        raise ValueError("attempts must be at least 1")
+
+    def decorator(func):
+
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+
+            for attempt in range(attempts):
+                try:
+                    return func(*args, **kwargs)
+
+                except Exception:
+                    if attempt == attempts - 1:
+                        raise
+
+        return wrapper
+
+    return decorator
