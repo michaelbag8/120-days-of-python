@@ -22,3 +22,22 @@ def retry(attempts):
         return wrapper
 
     return decorator
+
+
+def monitor(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"Function: {func.__name__}")
+        print(f"Arguments: {args}")
+        print(f"Keyword arguments: {kwargs}")
+
+        print("Started")
+
+        result = func(*args, **kwargs)
+
+        print("Finished")
+        print(f"Result: {result}")
+
+        return result
+
+    return wrapper
