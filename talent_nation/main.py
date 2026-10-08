@@ -23,3 +23,20 @@ def frequency_table(transactions):
     return total
 
 print(frequency_table(transactions))
+
+
+# B1. Trace the code and explain the output
+# *
+# What exactly is printed, and why?
+
+items = [2, 4, 6]
+result = []
+for item in items:
+    if item % 4 == 0:
+        continue
+    result.append(item * 2)
+print(result)
+
+# Answer:
+# What is printed is [4, 12], because for every number in the list that is divisible by 4 is skipped and the rest are multiplied by 2 and are appended to a new list.
+# In the list [2,4,6], 2 % 4 and 6 % 4 both leaves a remainder of 2, not 0, therefore they are multiplied by 2 and appended.
