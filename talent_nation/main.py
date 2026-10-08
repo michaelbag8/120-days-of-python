@@ -67,3 +67,14 @@ def borrow(resource, quantity):
 # it does not validates first before changing the data and the consequences of the problems discovered 
 # with the function is that stock will be negative , which is not supposed to be so, from the first line 
 # resource["available"] -= quantity even if it fails it will state change the data.
+
+
+# It is unsafe because check and update are not the same step. 
+# If Fellow A checks and requests 4 laptops and 5 are available, 
+# so it is allowed, then Fellow B checks and also requests 4 laptops, 
+# and still 5 are available because Fellow A has not updated yet, 
+# so he is allowed too, so by the time Fellow B acts and there is nothing to re-verify, 
+# Fellow A will not get his request, although it initially showed him available.
+# To ensure no more laptops are issued than available, 
+# then check and update should be one step by making sure only 
+# one request can enter the check and update section while the second one waits
