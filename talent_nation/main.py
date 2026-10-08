@@ -40,3 +40,30 @@ print(result)
 # Answer:
 # What is printed is [4, 12], because for every number in the list that is divisible by 4 is skipped and the rest are multiplied by 2 and are appended to a new list.
 # In the list [2,4,6], 2 % 4 and 6 % 4 both leaves a remainder of 2, not 0, therefore they are multiplied by 2 and appended.
+
+
+# B2. Diagnose and repair a borrowing bug
+# *
+# Identify the problem, explain its consequences and rewrite the function correctly.
+
+def borrow(resource, quantity):
+    resource["available"] -= quantity
+    if resource["available"] < 0:
+        return "Not enough stock"
+    return "Success"
+
+print(borrow(["yam"], 20))
+
+
+def borrow(resource, quantity):
+    if quantity <= 0:
+        return "Invalid quantity"
+    if quantity > resource["available"]:
+        return "Not enough stock"
+    resource["available"] -= quantity
+    return "Success"
+
+# The function does not check whether there is enough stock, before subtracting the quantity, 
+# it does not validates first before changing the data and the consequences of the problems discovered 
+# with the function is that stock will be negative , which is not supposed to be so, from the first line 
+# resource["available"] -= quantity even if it fails it will state change the data.
