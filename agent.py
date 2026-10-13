@@ -36,3 +36,23 @@ class ExampleClass:
 example = ExampleClass()
 result = example.process('test data')
 print(f'Result: {result}')
+
+
+# Visualization example
+import matplotlib.pyplot as plt
+
+def visualize_results(data: List[Any]):
+    """
+    Visualize the processing results.
+    """
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    # Add your visualization code here
+    ax.set_title('Results Visualization')
+    ax.set_xlabel('X-axis')
+    ax.set_ylabel('Y-axis')
+    
+    plt.tight_layout()
+    plt.show()
+
+# Example: visualize_results(sample_data)
