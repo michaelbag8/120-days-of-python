@@ -1,4 +1,6 @@
-computer_choice = "scissor"
+import random
+
+computer_choice = random.choice(["rock", "paper", "scissor"])
 user_choice = input("Do you want rock, paper, or scissor: ")
 
 if computer_choice == user_choice:
@@ -10,4 +12,4 @@ elif user_choice == "paper" and computer_choice == "rock":
 elif user_choice == "scissor" and computer_choice == "paper":
     print("WIN")
 else:
-    print("You lose, computer wins :)")
+    print("You lose, computer wins")
