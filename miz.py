@@ -14,3 +14,14 @@ def create_list(n):
     return [[n] for _ in range(5)]
 
 print(create_list(3))
+
+def remove_vowels(string):
+    vowel = "aeiou"
+    new_word = ""
+    for letters in string:
+        if not letters in vowel:
+            new_word += letters
+    return new_word
+
+word = "hello"
+print(remove_vowels(word))
