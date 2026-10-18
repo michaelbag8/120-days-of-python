@@ -1,7 +1,7 @@
 from recipes import recipes
 
 def list_recipes():
-    pass
+    return recipes
   
 def query_recipe():
     query_name = input("Enter the name of the recipe you want to search for: ")
@@ -38,7 +38,7 @@ def main():
         choice = input("Enter the number of your choice: ")
         
         if choice == "1":
-            list_recipes()
+            print(list_recipes())
         elif choice == "2":
             query_recipe()
         elif choice == "3":
