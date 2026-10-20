@@ -78,3 +78,26 @@ ename_file_with_path("./120-days-of-python/rock.py", "./120-days-of-python/rps.p
 move_files_folders("./120-days-of-python/miz.py", "./120-days-of-python/new")
 copy_files("./120-days-of-python/hof.py", "./120-days-of-python/test")
 copy_folder("./120-days-of-python/test", "./120-days-of-python/new")
+
+folder = "./120-days-of-python"
+folder1 = "./120-days-of-python/haven"
+
+print("=============Finding========================")
+ends_with(folder, ".txt")
+start_with(folder, "test_")
+
+print("***************Listing***********************")
+print(list_diff(folder))
+
+print(">>>>>>>>>>>>>>>>>>>>>Fn Match>>>>>>>>>>>>>>>>>>")
+match(folder, "*.md")
+match(folder, "*2*.*")
+
+print("----------------Glob Match---------------------")
+glob_match(folder, "text_*.*")
+
+print("~~~~~~~~~~~~~~~File Attributes~~~~~~~~~~")
+get_file_attrs(folder1)
+
+print("////////////Traverse/////////////////")
+traverse(folder)
