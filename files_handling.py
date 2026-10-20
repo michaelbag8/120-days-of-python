@@ -39,3 +39,26 @@ def get_file_attrs(fld):
             if f.is_file():
                 inf = f.stat()
                 print(f"Modified {get_date(inf.st_mtime)} {f.name}")
+
+
+def traverse(fld):
+    for fldpath, dirs, fls in os.walk(fld):
+        print(f"Folders: {fldpath}")
+        for fn in fls:
+            print(f"\t{fn}")
+
+def copy_files(src, dst):
+    shutil.copy(src, dst)
+
+def copy_folder(src, dst):
+    shutil.copytree(src, dst)
+
+def move_files_folders(src, dst):
+    shutil.move(src, dst)
+
+def rename_file(src, dst):
+    os.rename(src, dst)
+
+def rename_file_with_path(src, dst):
+    f = Path(src)
+    f.rename(dst)
