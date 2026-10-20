@@ -62,3 +62,19 @@ def rename_file(src, dst):
 def rename_file_with_path(src, dst):
     f = Path(src)
     f.rename(dst)
+
+def remove_file(file):
+    if os.path.isfile(file):
+        try:
+            os.remove(file)
+        except OSError as e:
+            print(f"Error: {file} : {e.strerror}")
+    else:
+        print(f"Error: {file} is not a valid file")
+
+remove_file("./120-days-of-python/hof.py")
+rename_file("./120-days-of-python/rps.py", "./120-days-of-python/rock.py")
+ename_file_with_path("./120-days-of-python/rock.py", "./120-days-of-python/rps.py")
+move_files_folders("./120-days-of-python/miz.py", "./120-days-of-python/new")
+copy_files("./120-days-of-python/hof.py", "./120-days-of-python/test")
+copy_folder("./120-days-of-python/test", "./120-days-of-python/new")
