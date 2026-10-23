@@ -55,3 +55,56 @@ def cadence_sum(n):
     return total
 
 print(cadence_sum(8))
+
+def screen_visitor(name, pass_code, escort):
+    if len(name) == 0:
+        return "no name"
+    if len(pass_code) == 0:
+        return "no pass"
+    if pass_code.startswith("X"):
+        return "deny"
+    if pass_code.startswith("R") and not escort:
+        return "needs escort"
+    return "admit"
+
+
+def after_hours_admit(pass_color, hour):
+    if pass_color == "red":
+        return "deny"
+    elif pass_color == "amber":
+        return "hold"
+    elif pass_color == "green" and  6 <= hour < 22:
+        return "admit"
+    elif pass_color == "green":
+        return "admit with escort"
+    else:
+        return "verify"
+
+
+def signal_report(callsign, strength):
+    return f"{callsign:>8} | {strength * 100:.1f}%"
+
+inc, a = ["HAWK",0.073]
+ins, b = ["EAGLE",0.5]
+
+print(signal_report(inc, a))
+print(signal_report(ins, b))
+
+def add_recruit(roster, name):
+    roster.append(name)
+    return roster
+    
+
+roster = ["A","B"]
+
+print(add_recruit(roster, "C"))
+
+def rotate_roster(roster):
+    if len(roster) <=0:
+        return roster.copy()
+    new_roster = roster[1:] + roster[:1]
+    return new_roster
+
+
+print(rotate_roster(["Ada","Tunde","Halima"]))
+#["Tunde","Halima","Ada"]
