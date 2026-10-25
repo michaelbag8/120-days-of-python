@@ -5,7 +5,7 @@ from fastapi import FastAPI, Request, Header, status
 from fastapi.responses import PlainTextResponse, RedirectResponse
 from starlette.exceptions import HTTPException
 
-app = FastAPI("title":"Learning FastAPI")
+app = FastAPI(title="Learning FastAPI")
 
 # Exercise 1
 @app.get("/ping", response_class=PlainTextResponse)
