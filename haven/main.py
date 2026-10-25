@@ -81,12 +81,12 @@ def version_two():
     return "Welcome to version 2"
 
 # The Strectch using Depends() --> check it out
-# def verify_api_key(x_api_key: str | None = Header(default=None)):
-#     if x_api_key != "secret123":
-#         raise HTTPException(
-#             status_code=401,
-#             detail="Unauthorized"
-#         )
+def verify_api_key(x_api_key: str | None = Header(default=None)):
+     if x_api_key != "secret123":
+         raise HTTPException(
+             status_code=401,
+             detail="Unauthorized"
+         )
 
 # @app.get("/dashboard")
 # def dashboard(api_key: str = Depends(verify_api_key)):
