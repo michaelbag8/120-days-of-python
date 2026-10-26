@@ -7,3 +7,11 @@ def censor(message, word):
    
 print(censor("enemy at the gate", "enemy"))
 
+def is_valid_transmission(message):
+    separator = "//"
+    if message.startswith("BEGIN") and message.endswith("END") and separator in message:
+        return True
+    return False
+
+
+print(is_valid_transmission("BEGIN move out END"))
