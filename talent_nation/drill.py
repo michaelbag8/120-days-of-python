@@ -59,3 +59,15 @@ print(find_first("ABCABC","Z"))
 def dog_tag(name, service_number):
     return name + " | SN-" + str(service_number)
 
+
+def safe_measure(raw):
+    raw_cleaned = raw.strip()
+    if raw_cleaned.count(".") <= 1 and raw_cleaned.replace(".", "").isdigit():
+        return float(raw_cleaned)
+    else:
+        return "invalid"
+
+
+
+print(safe_measure("3.14"))
+print(safe_measure("3.14.15"))
