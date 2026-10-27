@@ -36,6 +36,11 @@ def memorial_cost(prices):
         total += int(n)
     return total
 
+def sum_of_squares(numbers):
+    return sum([n**2 for n in numbers])
+
+def number_to_dashes(n):
+    return "-" * n
 
 
 inputs = ['a', 'b', 'c', 'd','abcd']
@@ -55,3 +60,5 @@ print(count_parameters(1,2,3,4,5,6))
 print(find_vowel_words(sentence))
 print(match_last_item(out))
 print(memorial_cost('10 20 30 40'))
+print(sum_of_squares([2,3,4]))
+print(number_to_dashes(5))
