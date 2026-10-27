@@ -50,6 +50,21 @@ def factorial(n):
         return 1
     return factorial(n-1) * n
 
+# def index_shuffle(txt):
+#     even = ""
+#     odd = ""
+#     for index, char in enumerate(txt, start=1):
+#         if index % 2 == 0:
+#             even += char
+#         else:
+#             odd += char
+
+#     return odd + even
+
+def index_shuffle(txt):
+    return txt[::2] + txt[1::2]
+
+
 
 
 inputs = ['a', 'b', 'c', 'd','abcd']
@@ -73,3 +88,5 @@ print(sum_of_squares([2,3,4]))
 print(number_to_dashes(5))
 print(repeat_last_char("hello", 3))
 print(factorial(5))
+print(index_shuffle("abcdef"))
+print(index_shuffle("hello"))
