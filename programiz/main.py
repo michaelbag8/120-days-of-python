@@ -29,6 +29,14 @@ def match_last_item(lst):
     return False
    
 
+def memorial_cost(prices):
+    split_ = prices.split(" ")
+    total = 0
+    for n in split_:
+        total += int(n)
+    return total
+
+
 
 inputs = ['a', 'b', 'c', 'd','abcd']
 
@@ -46,3 +54,4 @@ print(find_standard_deviation(std))
 print(count_parameters(1,2,3,4,5,6))
 print(find_vowel_words(sentence))
 print(match_last_item(out))
+print(memorial_cost('10 20 30 40'))
