@@ -41,6 +41,15 @@ def sum_of_squares(numbers):
 
 def number_to_dashes(n):
     return "-" * n
+    
+def repeat_last_char(string, n):
+    return string[:-1] + string[-1]*n
+
+def factorial(n):
+    if n ==0:
+        return 1
+    return factorial(n-1) * n
+
 
 
 inputs = ['a', 'b', 'c', 'd','abcd']
@@ -62,3 +71,5 @@ print(match_last_item(out))
 print(memorial_cost('10 20 30 40'))
 print(sum_of_squares([2,3,4]))
 print(number_to_dashes(5))
+print(repeat_last_char("hello", 3))
+print(factorial(5))
