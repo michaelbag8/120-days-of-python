@@ -86,3 +86,42 @@ for item in response.output:
 # Make second API request with function results
 response = client.responses.create(model="gpt-5.4-mini", input=messages, tools=tools)
 print(response.output_text)
+
+# Define the book recommendation schema
+class MovieRecommendation(BaseModel):
+    title: str = Field(description="The movie title")
+    genre: str = Field(description="Primary genre")
+    vibe: str = Field(description="One-word vibe: cozy, thrilling, emotional, or fun")
+    why: str = Field(description="One sentence explaining why this matches")
+
+# Generate structured recommendation
+response = client.responses.parse(
+    model="gpt-5.4-mini",
+    instructions="You are a knowledgeable movie recommender.",
+    input="Recommend a movie for someone who loved Inception and wants something mind-bending",
+    text_format=MovieRecommendation,
+)
+
+# Extract the parsed output and results
+recommendation = response.output_parsed
+print(f"Title: {recommendation.title}")
+print(f"Reason: {recommendation.why}")
+
+
+
+messages = [{"role": "system", "content": "You are a product cataloging expert who provides concise classifications and descriptions."}]
+
+# Add user message with text and image
+messages.append({
+    "role": "user",
+    "content": [
+        {"type": "input_text", "text": "Classify this product and write a brief but punchy description for our catalog."},
+        {"type": "input_image", "image_url": image_url}
+    ]
+})
+
+# Create the response
+response = client.responses.create(model="gpt-5.4-mini", input=messages)
+
+print(response.output_text)
+visualize_image(image_url)
