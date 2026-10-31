@@ -1,4 +1,4 @@
-ho#Challenge (Refactoring)
+#Challenge (Refactoring)
 #Can you rewrite your program so that the two numbers are requested only once?
 #Hint:
 #if operation in ("1", "2", "3", "4"):
