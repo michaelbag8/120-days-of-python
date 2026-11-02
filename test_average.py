@@ -1,4 +1,4 @@
-from movies import calculate_average
+from hof import calculate_average
 import pytest
 
 def test_valid_input():
