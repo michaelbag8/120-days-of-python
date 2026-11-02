@@ -70,3 +70,17 @@ class CoffeeMachine:
 machine = CoffeeMachine()
 
 machine.make_coffee()
+
+def calculate_average(scores):
+    total = 0
+
+    if not scores:
+        raise ValueError("Scores cannot be empty")
+
+    for score in scores:
+        if isinstance(score, bool) or not isinstance(score, (int, float)):
+            raise ValueError("Scores must contain only numbers")
+
+        total += score
+
+    return total / len(scores)
