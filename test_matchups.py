@@ -1,4 +1,4 @@
-from matchups import generate_matchups, group_players_by_team
+from matchups import generate_matchups, group_players_by_team, top_scoring_team, total_goals
 
 
 def test_empty_teams():
@@ -59,3 +59,34 @@ def test_players_from_same_team():
     "Man City": ["Haaland"],
     "Arsenal": ["Saka"]
 }
+    
+def test_valid_input():
+    players = [
+    {"name": "Salah", "team": "Liverpool", "goals": 18},
+    {"name": "Diaz", "team": "Liverpool", "goals": 12},
+    {"name": "Haaland", "team": "Man City", "goals": 22},
+    {"name": "Foden", "team": "Man City", "goals": 15},
+    {"name": "Saka", "team": "Arsenal", "goals": 16},
+    {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+    {"name": "Palmer", "team": "Chelsea", "goals": 14},
+]
+    result = top_scoring_team(players)
+    assert result == ('Man City', 37)
+
+
+def test_empty_input():
+    assert top_scoring_team([]) is None
+
+
+def test_tie_input():
+    players = [
+    {"name": "Salah", "team": "Liverpool", "goals": 22},
+    {"name": "Diaz", "team": "Liverpool", "goals": 15},
+    {"name": "Haaland", "team": "Man City", "goals": 22},
+    {"name": "Foden", "team": "Man City", "goals": 15},
+    {"name": "Saka", "team": "Arsenal", "goals": 16},
+    {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+    {"name": "Palmer", "team": "Chelsea", "goals": 14},
+]
+    result = top_scoring_team(players)
+    assert result == ('Liverpool', 37)

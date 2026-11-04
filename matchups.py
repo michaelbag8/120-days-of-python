@@ -21,3 +21,20 @@ def group_players_by_team(players):
         grouped_players[team].append(name)
 
     return grouped_players
+
+
+def total_goals(players):
+    team_goals = {}
+
+    for p in players:
+        team_goals.setdefault(p["team"], 0)
+        team_goals[p["team"]] += p["goals"]
+
+    return team_goals
+
+
+def top_scoring_team(players):
+    goals = total_goals(players)
+    if goals:
+        return max(goals.items(), key=lambda item: item[1])
+    return None
