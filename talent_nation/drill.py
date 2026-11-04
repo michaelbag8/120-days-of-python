@@ -1,99 +1,99 @@
-# def censor(message, word):
-#     if not word:
-#         return message
+def censor(message, word):
+    if not word:
+        return message
         
-#     return message.replace(word, "[REDACTED]")
+    return message.replace(word, "[REDACTED]")
    
    
-# print(censor("enemy at the gate", "enemy"))
+print(censor("enemy at the gate", "enemy"))
 
-# def is_valid_transmission(message):
-#     separator = "//"
-#     if message.startswith("BEGIN") and message.endswith("END") and separator in message:
-#         return True
-#     return False
+def is_valid_transmission(message):
+    separator = "//"
+    if message.startswith("BEGIN") and message.endswith("END") and separator in message:
+        return True
+    return False
 
-# print(is_valid_transmission("BEGIN move out END"))
+print(is_valid_transmission("BEGIN move out END"))
 
-# def count_until(text, marker):
-#     count = 0
-#     for char in text:
-#         if char == marker:
-#             break
-#         count += 1
-#     return count
+def count_until(text, marker):
+    count = 0
+    for char in text:
+        if char == marker:
+            break
+        count += 1
+    return count
 
-# print(count_until("ABCDE", "C"))
-# print(count_until("ABCDE", "Z"))
-
-
-
-# def count_active(report):
-#     count = 0
-#     for dot in report:
-#         if dot == ".":
-#             continue
-#         count +=1
-#     return count
-
-# print(count_active("...."))
+print(count_until("ABCDE", "C"))
+print(count_until("ABCDE", "Z"))
 
 
 
-# def find_first(text, target):
-#     if len(target) == 0 or target not in text:
-#         return -1
-#     count = 0
-#     while count < len(text):
-#         if text[count] == target:
-#             break
-#             count+=1
-#         count += 1
-#     return count
+def count_active(report):
+    count = 0
+    for dot in report:
+        if dot == ".":
+            continue
+        count +=1
+    return count
 
-
-# print(find_first("ABCABC","C"))
-# print(find_first("ABCABC","Z"))
-
-
-# def dog_tag(name, service_number):
-#     return name + " | SN-" + str(service_number)
-
-
-# def safe_measure(raw):
-#     raw_cleaned = raw.strip()
-#     if raw_cleaned.count(".") <= 1 and raw_cleaned.replace(".", "").isdigit():
-#         return float(raw_cleaned)
-#     else:
-#         return "invalid"
+print(count_active("...."))
 
 
 
-# print(safe_measure("3.14"))
-# print(safe_measure("3.14.15"))
+def find_first(text, target):
+    if len(target) == 0 or target not in text:
+        return -1
+    count = 0
+    while count < len(text):
+        if text[count] == target:
+            break
+            count+=1
+        count += 1
+    return count
+
+
+print(find_first("ABCABC","C"))
+print(find_first("ABCABC","Z"))
+
+
+def dog_tag(name, service_number):
+    return name + " | SN-" + str(service_number)
+
+
+def safe_measure(raw):
+    raw_cleaned = raw.strip()
+    if raw_cleaned.count(".") <= 1 and raw_cleaned.replace(".", "").isdigit():
+        return float(raw_cleaned)
+    else:
+        return "invalid"
 
 
 
-# def decrypt_brief(message, shift):
-#     return "".join(chr(ord(char) - shift) for char in message)
+print(safe_measure("3.14"))
+print(safe_measure("3.14.15"))
 
 
-# def decrypt_brief(message, shift):
-#     result = ""
 
-#     for char in message:
-#         if "a" <= char <= "z":
-#             decrypted = (ord(char) - ord("a") - shift) % 26
-#             result += chr(decrypted + ord("a"))
+def decrypt_briefs(message, shift):
+    return "".join(chr(ord(char) - shift) for char in message)
 
-#         elif "A" <= char <= "Z":
-#             decrypted = (ord(char) - ord("A") - shift) % 26
-#             result += chr(decrypted + ord("A"))
 
-#         else:
-#             result += char
+def decrypt_brief(message, shift):
+    result = ""
 
-#     return result
+    for char in message:
+        if "a" <= char <= "z":
+            decrypted = (ord(char) - ord("a") - shift) % 26
+            result += chr(decrypted + ord("a"))
+
+        elif "A" <= char <= "Z":
+            decrypted = (ord(char) - ord("A") - shift) % 26
+            result += chr(decrypted + ord("A"))
+
+        else:
+            result += char
+
+    return result
 
 
 def longest_streak(log):
