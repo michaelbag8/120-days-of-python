@@ -11,6 +11,8 @@ def get_ranking(team):
     goals = team["goals_for"]
     return (points, goals_diff, goals)
 
+def sort_teams(teams):
+    return sorted(teams, key=get_ranking, reverse=True)
 
 teams = [
     {"name": "Arsenal", "played": 30, "won": 22, "drawn": 5, "lost": 3, "goals_for": 65, "goals_against": 25},
@@ -20,7 +22,7 @@ teams = [
 ]
 
 
-result = sorted(teams, key=get_ranking, reverse=True)
+result = sort_teams(teams)
 for index, team in enumerate(result, start=1):
     points = calculate_points(team)
     print(f"{index}. {team['name']} - {points} points")
