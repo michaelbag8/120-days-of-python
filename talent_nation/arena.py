@@ -29,7 +29,7 @@ print(active_names(["Ada","","Tunde","","Halima"]))
 def long_names(roster, min_length):
     return [valid_names for valid_names in roster if len(valid_names) >= min_length ]
 
- def total_paces(n):
+def total_paces(n):
     total = 0
     if n == 0:
         return total
