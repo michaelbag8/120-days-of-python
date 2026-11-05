@@ -1,4 +1,4 @@
-from football_analyzer import calculate_team_goals, calculate_average_goals_per_team
+from football_analyzer import calculate_team_goals, calculate_average_goals_per_team, find_highest_scoring_team
 
 def test_teams_goals_normal_input():
     teams = [
@@ -64,3 +64,45 @@ def test_multiple_team_average():
     ]
     result = calculate_average_goals_per_team(players)
     assert result == {'Liverpool': 15.0}
+
+def test_normal_team_scores_input():
+    players = [
+    {"name": "Salah", "team": "Liverpool", "goals": 18},
+    {"name": "Diaz", "team": "Liverpool", "goals": 12},
+    {"name": "Haaland", "team": "Man City", "goals": 22},
+    {"name": "Foden", "team": "Man City", "goals": 15},
+    {"name": "Saka", "team": "Arsenal", "goals": 16},
+    {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+    {"name": "Palmer", "team": "Chelsea", "goals": 14},
+]
+    result = find_highest_scoring_team(players)
+    assert result == ('Man City', 37)
+
+def test_empty_team_scores_input():
+    assert find_highest_scoring_team([]) is None
+
+def test_tie_team_scores_input():
+    players = [
+    {"name": "Salah", "team": "Liverpool", "goals": 22},
+    {"name": "Diaz", "team": "Liverpool", "goals": 15},
+    {"name": "Haaland", "team": "Man City", "goals": 22},
+    {"name": "Foden", "team": "Man City", "goals": 15},
+    {"name": "Saka", "team": "Arsenal", "goals": 16},
+    {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+    {"name": "Palmer", "team": "Chelsea", "goals": 14},
+]
+    result = find_highest_scoring_team(players)
+    assert result == ('Liverpool', 37)
+
+def test_one_team_highest_score_input():
+    players = [
+    {"name": "Salah", "team": "Liverpool", "goals": 18},
+    {"name": "Diaz", "team": "Liverpool", "goals": 12},
+    {"name": "Haaland", "team": "Man City", "goals": 22},
+    {"name": "Foden", "team": "Man City", "goals": 15},
+    {"name": "Saka", "team": "Arsenal", "goals": 16},
+    {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+    {"name": "Palmer", "team": "Chelsea", "goals": 14},
+]
+    result = find_highest_scoring_team(players)
+    assert result == ('Man City', 37)

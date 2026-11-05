@@ -26,3 +26,11 @@ def calculate_average_goals_per_team(players):
         team_counts[p["team"]] += 1
     
     return {team: team_goals[team] / count for team , count in team_counts.items()}
+
+def find_highest_scoring_team(players):
+    team_goals = calculate_team_goals(players)
+
+    if not team_goals:
+        return None
+
+    return max(team_goals.items(), key=lambda item: item[1])
