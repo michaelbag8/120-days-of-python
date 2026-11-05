@@ -1,4 +1,4 @@
-from football_analyzer import calculate_team_goals, calculate_average_goals_per_team, find_highest_scoring_team
+from football_analyzer import calculate_team_goals, calculate_average_goals_per_team, find_highest_scoring_team, filter_teams_by_goals
 
 def test_teams_goals_normal_input():
     teams = [
@@ -106,3 +106,38 @@ def test_one_team_highest_score_input():
 ]
     result = find_highest_scoring_team(players)
     assert result == ('Man City', 37)
+
+
+def test_normal_filter_with_minimum():
+    players = [
+    {"name": "Salah", "team": "Liverpool", "goals": 18},
+    {"name": "Diaz", "team": "Liverpool", "goals": 12},
+    {"name": "Haaland", "team": "Man City", "goals": 22},
+    {"name": "Foden", "team": "Man City", "goals": 15},
+    {"name": "Saka", "team": "Arsenal", "goals": 16},
+    {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+    {"name": "Palmer", "team": "Chelsea", "goals": 14},
+]
+    result =filter_teams_by_goals(players, 25)
+    assert result == {'Liverpool': 30, 'Man City': 37, 'Arsenal': 26}
+
+def test_empty_input_with_minimum():
+    assert filter_teams_by_goals([], 25) == {}
+    
+def test_no_team_meet_minimum():
+    players = [
+        {"name": "Salah", "team": "Liverpool", "goals": 18},
+        {"name": "Pac", "team": "Aba Warriors", "goals": 12},
+        {"name": "Haaland", "team": "Man City", "goals": 22},
+    ]
+    result =filter_teams_by_goals(players, 25)
+    assert result == {}
+
+def test_normal_filter_with_minimum():
+    players = [
+        {"name": "Salah", "team": "Liverpool", "goals": 18},
+        {"name": "Pac", "team": "Aba Warriors", "goals": 25},
+        {"name": "Haaland", "team": "Man City", "goals": 22},
+    ]
+    result =filter_teams_by_goals(players, 25)
+    assert result == {"Aba Warriors": 25}

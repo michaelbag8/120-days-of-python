@@ -34,3 +34,12 @@ def find_highest_scoring_team(players):
         return None
 
     return max(team_goals.items(), key=lambda item: item[1])
+
+def filter_teams_by_goals(players, minimum_goals):
+    goals = calculate_team_goals(players)
+
+    return {
+        team: total
+        for team, total in goals.items()
+        if total >= minimum_goals
+    }
