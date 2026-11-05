@@ -1,4 +1,4 @@
-from matchups import generate_matchups, group_players_by_team, top_scoring_team, total_goals, top_scoring_teams, average_goals_per_team, filter_teams_by_goals
+from matchups import generate_matchups, group_players_by_team, top_scoring_team, total_goals, top_scoring_teams, average_goals_per_team, filter_teams_by_goals, rank_teams_by_goals, rank_teams
 
 
 def test_empty_teams():
@@ -176,3 +176,61 @@ def test_no_team_meet_minimum():
 }
     result = filter_teams_by_goals(goals, 25)
     assert result == {"Man City": 25}
+
+
+def test_normal_ranking():
+    team_goals = {
+    "Liverpool": 30,
+    "Man City": 37,
+    "Arsenal": 26,
+    "Chelsea": 14
+}
+    result = rank_teams_by_goals(team_goals)
+    assert result == [('Man City', 37), ('Liverpool', 30), ('Arsenal', 26), ('Chelsea', 14)]
+
+def test_empty_ranking():
+    assert rank_teams_by_goals({}) == []
+    
+def test_one_ranking():
+    team_goals = {"Liverpool": 30}
+    result = rank_teams_by_goals(team_goals)
+    assert result == [("Liverpool", 30)]
+
+def test_equal_ranking():
+    team_goals = {
+    "Liverpool": 30,
+    "Man City": 30,
+}
+    
+    result = rank_teams_by_goals(team_goals)
+    assert result == [("Liverpool", 30), ("Man City", 30)]
+
+
+def test_normal_teams_ranking():
+    teams = [
+    {"name": "Liverpool", "goals": 30, "matches": 12},
+    {"name": "Arsenal", "goals": 33, "matches": 10},
+    {"name": "Man City", "goals": 37, "matches": 12}
+]
+    result = rank_teams(teams)
+    assert result == [{'name': 'Man City', 'goals': 37, 'matches': 12}, {'name': 'Arsenal', 'goals': 33, 'matches': 10}, {'name': 'Liverpool', 'goals': 30, 'matches': 12}]
+
+def test_equal_goals_teams_ranking():
+    teams = [
+    {"name": "Liverpool", "goals": 30, "matches": 12},
+    {"name": "Arsenal", "goals": 37, "matches": 10},
+    {"name": "Man City", "goals": 37, "matches": 12}
+]
+
+    result = rank_teams(teams)
+    assert result == [ {'name': 'Arsenal', 'goals': 37, 'matches': 10}, {'name': 'Man City', 'goals': 37, 'matches': 12}, {'name': 'Liverpool', 'goals': 30, 'matches': 12}]
+
+def test_empty_teams_ranking():
+    assert rank_teams([]) == []
+    
+def test_single_teams_ranking():
+    team = [
+        {"name": "Man City", "goals": 37, "matches": 12}
+    ]
+    result = rank_teams(team)
+    assert result == [{"name": "Man City", "goals": 37, "matches": 12}]
