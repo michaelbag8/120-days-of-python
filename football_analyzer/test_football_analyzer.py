@@ -1,4 +1,4 @@
-from football_analyzer import calculate_team_goals, calculate_average_goals_per_team, find_highest_scoring_team, filter_teams_by_goals
+from football_analyzer import calculate_team_goals, calculate_average_goals_per_team, find_highest_scoring_team, filter_teams_by_goals, rank_teams
 
 def test_teams_goals_normal_input():
     teams = [
@@ -141,3 +141,35 @@ def test_normal_filter_with_minimum():
     ]
     result =filter_teams_by_goals(players, 25)
     assert result == {"Aba Warriors": 25}
+
+
+def test_normal_team_rank():
+    players = [
+    {"name": "Salah", "team": "Liverpool", "goals": 18},
+    {"name": "Diaz", "team": "Liverpool", "goals": 12},
+    {"name": "Haaland", "team": "Man City", "goals": 22},
+    {"name": "Foden", "team": "Man City", "goals": 15},
+    {"name": "Saka", "team": "Arsenal", "goals": 16},
+    {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+    {"name": "Palmer", "team": "Chelsea", "goals": 14},
+]
+    result = rank_teams(players)
+    assert result == [('Man City', 37), ('Liverpool', 30), ('Arsenal', 26), ('Chelsea', 14)]
+
+def test_empty_team_rank():
+    assert rank_teams([]) == []
+    
+def test_one_team_rank():
+    players = [
+        {"name": "Palmer", "team": "Chelsea", "goals": 14},
+    ]
+    result = rank_teams(players)
+    assert result == [("Chelsea", 14)]
+
+def test_tie_team_rank():
+    players = [
+    {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+    {"name": "Palmer", "team": "Chelsea", "goals": 10},
+]
+    result = rank_teams(players)
+    assert result == [("Arsenal", 10), ("Chelsea", 10)]

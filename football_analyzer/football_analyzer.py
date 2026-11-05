@@ -43,3 +43,11 @@ def filter_teams_by_goals(players, minimum_goals):
         for team, total in goals.items()
         if total >= minimum_goals
     }
+
+def rank_teams(players):
+    team_goals = calculate_team_goals(players)
+    return sorted(
+        team_goals.items(),
+        key=lambda item: item[1],
+        reverse=True
+    )
