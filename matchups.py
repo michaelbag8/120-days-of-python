@@ -47,3 +47,20 @@ def top_scoring_teams(players):
         for team, total in goals.items()
         if total == highest
     ]
+
+
+def average_goals_per_team(players):
+    goals = total_goals(players)
+
+    if not goals:
+        return 0
+
+    return sum(goals.values()) / len(goals)
+
+
+def filter_teams_by_goals(goals, minimum_goals):
+    return {
+        team: total
+        for team, total in goals.items()
+        if total >= minimum_goals
+    }

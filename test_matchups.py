@@ -1,4 +1,4 @@
-from matchups import generate_matchups, group_players_by_team, top_scoring_team, total_goals, top_scoring_teams
+from matchups import generate_matchups, group_players_by_team, top_scoring_team, total_goals, top_scoring_teams, average_goals_per_team, filter_teams_by_goals
 
 
 def test_empty_teams():
@@ -119,3 +119,60 @@ def test_multiple_teams_highest_scores():
 
 def test_empty_list():
     assert top_scoring_teams([]) == []
+
+
+def test_normal_input():
+    players = [
+    {"name": "Salah", "team": "Liverpool", "goals": 18},
+    {"name": "Diaz", "team": "Liverpool", "goals": 12},
+    {"name": "Haaland", "team": "Man City", "goals": 22},
+    {"name": "Foden", "team": "Man City", "goals": 15},
+    {"name": "Saka", "team": "Arsenal", "goals": 16},
+    {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+    {"name": "Palmer", "team": "Chelsea", "goals": 14},
+]
+    result = average_goals_per_team(players)
+    assert result == 26.75
+
+def test_empty_players_input():
+    assert average_goals_per_team([]) == 0
+
+def test_single_team_input():
+    players = [
+        {"name": "Palmer", "team": "Chelsea", "goals": 14}
+    ]
+    result = average_goals_per_team(players)
+    assert result == 14
+
+def test_normal_goals_input():
+    goals = {
+    "Liverpool": 30,
+    "Man City": 37,
+    "Arsenal": 26,
+    "Chelsea": 14
+}
+    result = filter_teams_by_goals(goals, 25)
+    assert result == {'Liverpool': 30, 'Man City': 37, 'Arsenal': 26}
+
+def test_no_team_meet_minimum():
+    goals = {
+    "Liverpool": 10,
+    "Man City": 7,
+    "Arsenal": 2,
+    "Chelsea": 14
+}
+    result = filter_teams_by_goals(goals, 25)
+    assert result == {}
+
+def test_empty_dictionary():
+    assert filter_teams_by_goals({},25) == {}
+
+def test_no_team_meet_minimum():
+    goals = {
+    "Liverpool": 10,
+    "Man City": 25,
+    "Arsenal": 2,
+    "Chelsea": 14
+}
+    result = filter_teams_by_goals(goals, 25)
+    assert result == {"Man City": 25}
