@@ -51,3 +51,11 @@ def rank_teams(players):
         key=lambda item: item[1],
         reverse=True
     )
+
+def generate_league_report(players):
+    return {
+    "team_goals": calculate_team_goals(players),
+    "average_goals": calculate_average_goals_per_team(players),
+    "highest_scoring_team": find_highest_scoring_team(players),
+    "rankings": rank_teams(players)
+}
