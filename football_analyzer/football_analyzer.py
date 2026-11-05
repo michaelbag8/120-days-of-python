@@ -26,6 +26,3 @@ def calculate_average_goals_per_team(players):
         team_counts[p["team"]] += 1
     
     return {team: team_goals[team] / count for team , count in team_counts.items()}
-
-
-print(calculate_average_goals_per_team(teams))
