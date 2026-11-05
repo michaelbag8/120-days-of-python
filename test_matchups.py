@@ -1,4 +1,4 @@
-from matchups import generate_matchups, group_players_by_team, top_scoring_team, total_goals, top_scoring_teams, average_goals_per_team, filter_teams_by_goals, rank_teams_by_goals, rank_teams
+from matchups import generate_matchups, group_players_by_team, top_scoring_team, top_scoring_teams, average_goals_per_team, filter_teams_by_goals, rank_teams_by_goals, rank_teams
 
 
 def test_empty_teams():
