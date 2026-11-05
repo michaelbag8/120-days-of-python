@@ -38,3 +38,12 @@ def top_scoring_team(players):
     if goals:
         return max(goals.items(), key=lambda item: item[1])
     return None
+
+def top_scoring_teams(players):
+    goals = total_goals(players)
+    highest = max(goals.values(), default=0)
+    return [
+        (team, total)
+        for team, total in goals.items()
+        if total == highest
+    ]
