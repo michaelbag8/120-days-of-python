@@ -1,4 +1,4 @@
-from football_analyzer import calculate_team_goals, calculate_average_goals_per_team, find_highest_scoring_team, filter_teams_by_goals, rank_teams
+from football_analyzer import calculate_team_goals, calculate_average_goals_per_team, find_highest_scoring_team, filter_teams_by_goals, rank_teams, generate_league_report
 
 def test_teams_goals_normal_input():
     teams = [
@@ -173,3 +173,45 @@ def test_tie_team_rank():
 ]
     result = rank_teams(players)
     assert result == [("Arsenal", 10), ("Chelsea", 10)]
+
+
+def test_normal_report_dataset():
+    players = [
+        {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+        {"name": "Palmer", "team": "Chelsea", "goals": 14},
+    ]
+    result = generate_league_report(players)
+    assert result == {'team_goals': {'Arsenal': 10, 'Chelsea': 14}, 'average_goals': {'Arsenal': 10.0, 'Chelsea': 14.0}, 'highest_scoring_team': ('Chelsea', 14), 'rankings': [('Chelsea', 14), ('Arsenal', 10)]}
+
+def test_empty_report_list():
+  assert generate_league_report([]) == {'team_goals': {}, 'average_goals': {}, 'highest_scoring_team': None, 'rankings': []}
+
+def test_one_team_report():
+    players = [
+        {"name": "Odegaard", "team": "Arsenal", "goals": 10},
+     
+    ]
+    result = generate_league_report(players)
+    assert result == {'team_goals': {'Arsenal': 10}, 'average_goals': {'Arsenal': 10.0}, 'highest_scoring_team': ('Arsenal', 10), 'rankings': [('Arsenal', 10)]}
+
+def test_multiple_teams():
+    players = [
+    {"name": "Salah", "team": "Liverpool", "goals": 18},
+    {"name": "Diaz", "team": "Liverpool", "goals": 12},
+    {"name": "Haaland", "team": "Man City", "goals": 22},
+    {"name": "Foden", "team": "Man City", "goals": 15},
+    {"name": "Saka", "team": "Arsenal", "goals": 18},
+    {"name": "Odegaard", "team": "Arsenal", "goals": 12},
+    {"name": "Palmer", "team": "Chelsea", "goals": 14},
+]
+    result = generate_league_report(players)
+    assert result == {'team_goals': {'Liverpool': 30, 'Man City': 37, 'Arsenal': 30, 'Chelsea': 14}, 'average_goals': {'Liverpool': 15.0, 'Man City': 18.5, 'Arsenal': 15.0, 'Chelsea': 14.0}, 'highest_scoring_team': ('Man City', 37), 'rankings': [('Man City', 37), ('Liverpool', 30), ('Arsenal', 30), ('Chelsea', 14)]}
+
+
+def test_keys_verification():
+    players = [
+        {"name": "Odegaard", "team": "Arsenal", "goals": 10},  
+    ]
+    report = generate_league_report(players)
+    assert set(report) == {"team_goals","average_goals","highest_scoring_team","rankings"}
+
