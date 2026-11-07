@@ -41,16 +41,11 @@ def calculate_league_standings(matches, original_standings):
 
 original_standings = {
     "Arsenal": 6,
-    "Liverpool": 3
+    "Chelsea": 3
 }
-
 matches = [
-    {
-        "home": "Arsenal",
-        "away": "Chelsea",
-        "home_goals": 2,
-        "away_goals": 1
-    }
+    {"home": "Arsenal", "away": "Liverpool", "home_goals": 2, "away_goals": 0},
+    {"home": "Chelsea", "away": "Man City", "home_goals": 1, "away_goals": 1}
 ]
 
 print(calculate_league_standings(matches, original_standings))
