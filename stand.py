@@ -27,17 +27,29 @@ def calculate_match_points(match, standings):
     return standings
 
 
-def calculate_league_standings(matches, original_standings):
+def calculate_league_standings(matches, original_standings, processed_matches):
     temporary_standing = {}
+    temporary_processed_matches = set()
 
+    
     for match in matches:
-        calculate_match_points(match, temporary_standing)
+        match_id = match["match_id"]
 
+        if match_id in processed_matches or match_id in temporary_processed_matches:
+            raise ValueError("Match already processed")
+
+        calculate_match_points(match, temporary_standing)
+        temporary_processed_matches.add(match_id)
+
+    
     for team, points in temporary_standing.items():
         original_standings.setdefault(team, 0)
         original_standings[team] += points
 
+    processed_matches.update(temporary_processed_matches)
+
     return original_standings
+
 
 original_standings = {
     "Arsenal": 6,
@@ -49,4 +61,5 @@ matches = [
     {"home": "Chelsea", "away": "Liverpool", "home_goals": 1, "away_goals": 1}
 ]
 
+print(calculate_league_standings(matches, original_standings))
 print(calculate_league_standings(matches, original_standings))
