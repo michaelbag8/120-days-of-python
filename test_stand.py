@@ -28,3 +28,22 @@ def test_normal_input():
 
     result = calculate_league_standings(matches, original_standings)
     assert result == {'Arsenal': 9, 'Chelsea': 4, 'Liverpool': 0, 'Man City': 1}
+
+
+def test_standings_remain_unchanged_when_match_is_invalid():
+    original_standings = {
+        "Arsenal": 6,
+        "Chelsea": 3
+    }
+
+    original_copy = original_standings.copy()
+
+    matches = [
+        {"home": "Arsenal", "away": "Liverpool", "home_goals": 2, "away_goals": 0},
+        {"home": "Chelsea", "away": "Chelsea", "home_goals": 1, "away_goals": 1}
+    ]
+
+    with pytest.raises(ValueError):
+        calculate_league_standings(matches, original_standings)
+
+    assert original_standings == original_copy
