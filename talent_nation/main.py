@@ -78,26 +78,3 @@ def borrow(resource, quantity):
 # To ensure no more laptops are issued than available, 
 # then check and update should be one step by making sure only 
 # one request can enter the check and update section while the second one waits
-def calculate_match_points(match, standings):
-    home = match["home"]
-    away = match["away"]
-
-    home_goals = match["home_goals"]
-    away_goals = match["away_goals"]
-
-    standings.setdefault(home, 0)
-    standings.setdefault(away, 0)
-    
-    if home_goals > away_goals:
-        standings[home] += 3
-    
-
-    elif away_goals > home_goals:
-        standings[away] += 3
-   
-    else:
-        standings[home] += 1
-        standings[away] += 1
-
-    return standings
-    
