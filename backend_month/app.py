@@ -1,3 +1,14 @@
+class TaskManagerError(Exception):
+    pass
+
+
+class TaskNotFoundError(TaskManagerError):
+    pass
+
+
+class DuplicateTaskError(TaskManagerError):
+    pass
+
 
 def generate_task_id(tasks: list[dict]) -> int:
     if not tasks:
@@ -24,7 +35,7 @@ def create_task(title: str, task_id: int, tasks: list[dict]) -> dict:
     
     for task in tasks:
         if task_id == task["id"]:
-            raise ValueError("ID already exist")
+            raise DuplicateTaskError("ID already exist")
         
     new_task = {
         "id": task_id,
@@ -35,8 +46,6 @@ def create_task(title: str, task_id: int, tasks: list[dict]) -> dict:
     tasks.append(new_task)
     return new_task
 
-class TaskNotFoundError(Exception):
-    pass
 
 def find_task(task_id: int, tasks: list[dict]) -> dict:
     for task in tasks:

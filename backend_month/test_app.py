@@ -1,4 +1,4 @@
-from app import create_task, find_task, TaskNotFoundError
+from app import create_task, find_task, TaskNotFoundError, generate_task_id, DuplicateTaskError
 
 import pytest
 
@@ -27,7 +27,7 @@ def test_duplicate_id_input():
     {"id": 2, "title": "Learn FastAPI"},
     {"id": 3, "title": "Practise SQL"}
 ]
-    with pytest.raises(ValueError, match="ID already exist"):
+    with pytest.raises(DuplicateTaskError, match="ID already exist"):
         create_task("Learn Java", 3, tasks)
     
 
@@ -101,3 +101,7 @@ def test_find_task_error_message():
 
     with pytest.raises(TaskNotFoundError, match="Task not found"):
         find_task(5, tasks)
+
+def test_empty_generate_id():
+    assert generate_task_id([]) == 1
+    
