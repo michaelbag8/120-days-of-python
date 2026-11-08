@@ -34,3 +34,13 @@ def create_task(title: str, task_id: int, tasks: list[dict]) -> dict:
 
     tasks.append(new_task)
     return new_task
+
+class TaskNotFoundError(Exception):
+    pass
+
+def find_task(task_id: int, tasks: list[dict]) -> dict:
+    for task in tasks:
+        if task_id == task["id"]:
+            return task
+       
+    raise TaskNotFoundError("Task not found")

@@ -1,4 +1,4 @@
-from app import create_task
+from app import create_task, find_task, TaskNotFoundError
 
 import pytest
 
@@ -74,3 +74,30 @@ def test_zero_task_id():
     with pytest.raises(ValueError, match="Task ID must be greater than zero"):
         create_task("Learn To Sing", 0, tasks)
 
+
+def test_find_task_returns_existing_task():
+    tasks = [
+        {"id": 1, "title": "Learn Python"},
+        {"id": 2, "title": "Learn FastAPI"}
+    ]
+
+    result = find_task(2, tasks)
+
+    assert result == {"id": 2, "title": "Learn FastAPI"}
+
+
+
+def test_find_task_raises_error_when_task_does_not_exist():
+    tasks = [
+        {"id": 1, "title": "Learn Python"},
+        {"id": 2, "title": "Learn FastAPI"}
+    ]
+
+    with pytest.raises(TaskNotFoundError):
+        find_task(5, tasks)
+
+def test_find_task_error_message():
+    tasks = []
+
+    with pytest.raises(TaskNotFoundError, match="Task not found"):
+        find_task(5, tasks)

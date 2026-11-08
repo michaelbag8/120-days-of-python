@@ -57,9 +57,9 @@ original_standings = {
 }
 
 matches = [
-    {"home": "Arsenal", "away": "Liverpool", "home_goals": 2, "away_goals": 0},
-    {"home": "Chelsea", "away": "Liverpool", "home_goals": 1, "away_goals": 1}
+    {"match_id": "M001", "home": "Arsenal", "away": "Liverpool", "home_goals": 2, "away_goals": 0},
+    {"match_id": "M002", "home": "Chelsea", "away": "Liverpool", "home_goals": 1, "away_goals": 1}
 ]
-
-print(calculate_league_standings(matches, original_standings))
-print(calculate_league_standings(matches, original_standings))
+processed_match = set()
+print(calculate_league_standings(matches, original_standings, processed_match))
+print(calculate_league_standings(matches, original_standings, processed_match))
