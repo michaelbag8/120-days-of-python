@@ -97,3 +97,21 @@ def test_reject_previously_processed_match():
     with pytest.raises(ValueError):
         calculate_league_standings(matches, original_standings, processed_matches)
     assert processed_matches == processed_matches_copy
+
+def test_processed_id_already_exist():
+    processed_matches = {"M001"}
+
+    matches = [
+        {
+        "match_id": "M001",
+        "home": "Arsenal",
+        "away": "Chelsea",
+        "home_goals": 2,
+        "away_goals": 0
+        }
+    ]
+
+    original_standings = {"Arsenal": 6, "Chelsea": 3}
+    with pytest.raises(ValueError, match="Match already processed"):
+        calculate_league_standings(matches, original_standings, processed_matches)
+   
