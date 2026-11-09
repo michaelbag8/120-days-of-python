@@ -51,15 +51,34 @@ def calculate_league_standings(matches, original_standings, processed_matches):
     return original_standings
 
 
-original_standings = {
-    "Arsenal": 6,
-    "Chelsea": 3
-}
 
-matches = [
-    {"match_id": "M001", "home": "Arsenal", "away": "Liverpool", "home_goals": 2, "away_goals": 0},
-    {"match_id": "M002", "home": "Chelsea", "away": "Liverpool", "home_goals": 1, "away_goals": 1}
-]
-# processed_match = set()
-# print(calculate_league_standings(matches, original_standings, processed_match))
-# print(calculate_league_standings(matches, original_standings, processed_match))
+def validate_match(match):
+    if not isinstance(match, dict):
+        raise TypeError("Match must be a dictionary")
+    
+    fields = {"match_id", "home","away", "home_goals", "away_goals"}
+    missing_fields =  [field for field in fields if field not in match]
+
+    if missing_fields:
+        raise ValueError(f"Missing required match fields")
+
+
+    match_id = match["match_id"]
+    home = match["home"]
+    away = match["away"]
+
+    if not isinstance(match_id, str):
+        raise TypeError("ID must be a string")
+
+    if match_id.strip() == "":
+        raise ValueError("ID can not be non empty string")
+    
+    if any(not isinstance(v, str) for v in (home, away)):
+
+        raise TypeError("Home and away team names must be strings")
+    
+    if home.strip() == "":
+        raise ValueError("Home team cannot be empty")
+    
+    if away.strip() == "":
+        raise ValueError("Away team cannot be empty")

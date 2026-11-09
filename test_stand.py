@@ -1,4 +1,4 @@
-from stand import calculate_league_standings
+from stand import calculate_league_standings, validate_match
 import pytest
 
 
@@ -115,3 +115,27 @@ def test_processed_id_already_exist():
     with pytest.raises(ValueError, match="Match already processed"):
         calculate_league_standings(matches, original_standings, processed_matches)
    
+def test_all_required_fields():
+    match = {
+    "match_id": "M001",
+    "home": "Arsenal",
+    "away": "Chelsea",
+    "home_goals": 4,
+    "away_goals": 2
+}
+    assert validate_match(match) is None
+
+def test_missing_field():
+    match = {
+    "match_id": "M001",
+    "home": "Arsenal",
+    "away_goals": 1,
+    "home_goals": 4
+}
+    with pytest.raises(ValueError, match="Missing required match fields"):
+        validate_match(match)
+
+def test_list_instead_of_dict():
+    match = ["away", "home_goals"]
+    with pytest.raises(TypeError, match="Match must be a dictionary"):
+        validate_match(match)
