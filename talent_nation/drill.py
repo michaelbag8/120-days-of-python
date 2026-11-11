@@ -74,8 +74,8 @@ print(safe_measure("3.14.15"))
 
 
 
-def decrypt_briefs(message, shift):
-    return "".join(chr(ord(char) - shift) for char in message)
+# def decrypt_briefs(message, shift):
+#     return "".join(chr(ord(char) - shift) for char in message)
 
 
 def decrypt_brief(message, shift):
