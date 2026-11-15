@@ -29,7 +29,23 @@ class User:
             raise ValueError("Name cannot be empty")
 
         self._name = new_name
+class Age:
+    def __get__(self, instance, owner):
+        return 25
 
+    def __set__(self, instance, value):
+        print(f"Age assigned: {value}")
+
+
+class Person:
+    age = Age()
+
+
+person = Person()
+
+person.age = 30
+
+print(person.age)
 
 
 @lru_cache(maxsize=None)
