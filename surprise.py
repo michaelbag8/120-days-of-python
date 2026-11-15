@@ -29,3 +29,15 @@ class User:
             raise ValueError("Name cannot be empty")
 
         self._name = new_name
+
+
+
+@lru_cache(maxsize=None)
+def square(n):
+    print("Calculating...")
+    return n * n
+
+
+print(square(5))
+print(square(5))
+print(square(5))
