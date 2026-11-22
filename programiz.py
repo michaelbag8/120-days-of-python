@@ -15,3 +15,8 @@ def repeat_item(item, n):
 def calculate_clock_interval(face1, face2):
     difference = abs(face1- face2)
     return min(difference, 12-difference)
+
+
+def find_square_root(n):
+    square_root = math.sqrt(n)
+    return round(square_root, 2)
