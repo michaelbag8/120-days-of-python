@@ -11,3 +11,7 @@ print(convert_to_camel_case("hello world"))
 
 def repeat_item(item, n):
     return list(item*n)
+
+def calculate_clock_interval(face1, face2):
+    difference = abs(face1- face2)
+    return min(difference, 12-difference)
