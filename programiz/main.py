@@ -64,6 +64,11 @@ def factorial(n):
 def index_shuffle(txt):
     return txt[::2] + txt[1::2]
 
+def min_removals(nums):
+    return sum(nums) % 2
+
+numbers= [9,11,7]
+print(min_removals(numbers))
 
 
 
